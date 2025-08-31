@@ -166,6 +166,8 @@ stack(
   ebassArr,
   stringsArr,
   transitionArr
-).punchcard(
-  { vertical: 1}
+).pianoroll(
+  {
+    vertical: 1,
+  }
 )
