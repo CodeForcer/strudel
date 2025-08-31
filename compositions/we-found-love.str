@@ -1,0 +1,141 @@
+// LOAD SAMPLES
+samples('github:CodeForcer/strudel')
+
+// SET 128 BPM // 4 BEATS PER CYCLE
+setcpm(128/4)
+
+// == INSTRUMENTS ==
+
+// === STRINGS ===
+const strings =
+  note(`
+    [f#5 c#6 c#6 b5  c#5 g#5 f#5 g#5  d#5 a#5 g#5 f#5  b4 f#5 c#5 f5]/4
+  `)
+    .legato(0.95)
+    .velocity(`
+      0.95 0.80 0.80 0.80  0.95 0.80 0.80 0.80
+      0.95 0.80 0.80 0.80  0.95 0.80 0.80 0.80
+    `)
+    .s("gm_string_ensemble_1")
+    .gain(1)
+
+
+// === DRUMS ===
+const kick  = s("bd bd bd bd").gain(0.3)
+const snare = s("~ sd ~ sd").gain(0.1)
+const hat   = s("~ hh ~ hh").gain(0.1)
+const drums = stack(kick, snare, hat)
+
+// === BASS ===
+const bass = note("[f#5 g#5 a#5 g#5 f#5 g#5 c#6 b5]/8")
+  .velocity("0.598 0.709 0.819 0.646 0.543 0.638 0.661 0.520")
+  .legato(0.95)
+  .s("gm_synth_bass_1")
+  .gain(0.3)
+
+// === PIANO ===
+const piano =
+  note(`
+    <
+      [f#4,a#4,c#5] [f#4,a#4,c#5] [f#4,a#4,c#5] [f#4,a#4,c#5] [f#4,a#4,c#5] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      [c#4,f4,g#4] [c#4,f4,g#4] [c#4,f4,g#4] [c#4,f4,g#4] [c#4,f4,g#4] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      [d#4,f#4,a#4] [d#4,f#4,a#4] [d#4,f#4,a#4] [d#4,f#4,a#4] [d#4,f#4,a#4] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]
+      [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]
+    >
+  `)
+    .velocity(0.787)
+    .legato(0.95)
+    .s("gm_piano")
+    .fast(16)
+    .gain(0.8)
+
+// === ELECTRIC BASS ===
+const ebass2 =
+  note("<[f#3,c#4]*8 [c#3,g#3]*8 [d#3,a#3]*8 [b2,f#3]*8>")
+    .velocity(0.787)
+    .legato(0.35)
+    .s("gm_electric_bass_finger")
+    .gain(0.6)
+
+// SAMPLES (VOCALS & EFFECTS)
+const voxIntro = s("we-found-love:1").legato(1).slow(16).gain(0.9)
+const voxMain  = s("we-found-love:2").legato(1).slow(16).gain(0.9)
+const voxHook  = s("we-found-love:0").legato(1).slow(9).gain(0.9)
+const transition = s("effects:0").legato(1).slow(6).gain(0.9)
+
+// == ARRANGEMENT (153 bars) ==
+
+const drumsArr = arrange(
+  [8,  silence],
+  [32, drums],
+  [24, silence],
+  [32, drums],
+  [8,  silence],
+  [44, drums],
+  [5,  silence]
+)
+
+const vocalsArr = arrange(
+  [40, silence],   // 1–40
+  [16, voxIntro],  // 41–56
+  [16, silence],   // 57–72
+  [16, voxMain],   // 73–88
+  [16, silence],   // 89–104
+  [9,  voxHook],   // 105–113
+  [3,  silence],   // 114–116
+  [9,  voxHook],   // 117–125
+  [28, silence]    // 126–153
+)
+
+const bassArr = arrange(
+  [32, bass],      // 1–32
+  [32, silence],   // 33–64
+  [8,  bass],      // 65–72
+  [32, silence],   // 73–104
+  [24, bass],      // 105–128
+  [25, silence]    // 129–153
+)
+
+const pianoArr = arrange(
+  [24, silence],   // 1–24
+  [32, piano],     // 25–56
+  [32, silence],   // 57–88
+  [56, piano],     // 89–144
+  [9,  silence]    // 145–153
+)
+
+const ebassArr = arrange(
+  [16, silence],   // 1–16
+  [24, ebass2],    // 17–40
+  [8,  silence],   // 41–48
+  [48, ebass2],    // 49–96
+  [8,  silence],   // 97–104
+  [48, ebass2],    // 105–152
+  [1,  silence]    // 153
+)
+
+const stringsArr = arrange(
+  [32, silence],   // 1–32
+  [8,  strings],   // 33–40
+  [16, silence],   // 41–56
+  [16, strings],   // 57–72
+  [16, silence],   // 73–88
+  [48, strings],   // 89–136
+  [17, silence]    // 137–153
+)
+
+const transitionArr = arrange(
+  [36, silence],   // up to 36
+  [6,  transition],// 37–42
+  [26, silence],   // 43–68
+  [6,  transition],// 69–74
+  [26, silence],   // 75–100
+  [6,  transition],// 101–106
+  [6,  silence],   // 107–112
+  [6,  transition],// 113–118
+  [35, silence]    // 119–153
+)
+
+// === SONG ===
+stack(drumsArr, bassArr, vocalsArr, pianoArr, ebassArr, stringsArr, transitionArr)
