@@ -51,11 +51,16 @@ const bass = note("[f#5 g#5 a#5 g#5 f#5 g#5 c#6 b5]/8")
 const piano =
   note(`
     <
-      [f#4,a#4,c#5] [f#4,a#4,c#5] [f#4,a#4,c#5] [f#4,a#4,c#5] [f#4,a#4,c#5] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-      [c#4,f4,g#4] [c#4,f4,g#4] [c#4,f4,g#4] [c#4,f4,g#4] [c#4,f4,g#4] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-      [d#4,f#4,a#4] [d#4,f#4,a#4] [d#4,f#4,a#4] [d#4,f#4,a#4] [d#4,f#4,a#4] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-      [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]
-      [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]
+      [f#4,a#4,c#5] [f#4,a#4,c#5] [f#4,a#4,c#5] [f#4,a#4,c#5]
+      [f#4,a#4,c#5] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      [c#4,f4,g#4] [c#4,f4,g#4] [c#4,f4,g#4] [c#4,f4,g#4]
+      [c#4,f4,g#4] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      [d#4,f#4,a#4] [d#4,f#4,a#4] [d#4,f#4,a#4] [d#4,f#4,a#4]
+      [d#4,f#4,a#4] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]
+      [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]
+      [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]
+      [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]  [b3,d#4,f#4]
     >
   `)
     .velocity(0.787)
@@ -152,4 +157,15 @@ const transitionArr = arrange(
 )
 
 // === SONG ===
-stack(preloadHack, drumsArr, bassArr, vocalsArr, pianoArr, ebassArr, stringsArr, transitionArr)
+stack(
+  preloadHack,
+  drumsArr,
+  bassArr,
+  vocalsArr,
+  pianoArr,
+  ebassArr,
+  stringsArr,
+  transitionArr
+).punchcard(
+  { vertical: 1}
+)
