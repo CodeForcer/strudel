@@ -1,5 +1,5 @@
 // LOAD SAMPLES
-samples('github:CodeForcer/strudel')
+samples('github:CodeForcer/strudel/main')
 
 // SET 128 BPM // 4 BEATS PER CYCLE
 setcpm(128/4)

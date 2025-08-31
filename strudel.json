@@ -1,11 +1,11 @@
 {
-  "_base": "https://raw.githubusercontent.com/CodeForcer/strudel/main/",
+  "_base": "https://raw.githubusercontent.com/CodeForcer/strudel/main/samples/",
   "we-found-love": [
-    "samples/we-found-love/vox-hook-9bar.wav",
-    "samples/we-found-love/vox-intro-16bar.wav",
-    "samples/we-found-love/vox-mainverse-16bar.wav"
+    "we-found-love/vox-hook-9bar.wav",
+    "we-found-love/vox-intro-16bar.wav",
+    "we-found-love/vox-mainverse-16bar.wav"
   ],
   "effects": [
-    "samples/effects/transition.wav"
+    "effects/transition.wav"
   ]
 }
