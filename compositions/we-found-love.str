@@ -1,5 +1,19 @@
 // LOAD SAMPLES
-samples('github:CodeForcer/strudel/main')
+samples({
+  voxIntro: 'samples/we-found-love/vox-intro-16bar.wav',
+  voxMain: 'samples/we-found-love/vox-mainverse-16bar.wav',
+  voxHook: 'samples/we-found-love/vox-hook-9bar.wav',
+  transition: 'samples/effects/transition.wav',
+}, 'https://raw.githubusercontent.com/CodeForcer/strudel/main/');
+
+// This is needed otherwise the first play wont work due to lazy loading
+const preloadHack = arrange(
+  [1, s("voxIntro").gain(0)],
+  [1, s("voxMain").gain(0)],
+  [1, s("voxHook").gain(0)],
+  [1, s("transition").gain(0)],
+  [149, silence]
+)
 
 // SET 128 BPM // 4 BEATS PER CYCLE
 setcpm(128/4)
@@ -59,10 +73,10 @@ const ebass2 =
     .gain(0.6)
 
 // SAMPLES (VOCALS & EFFECTS)
-const voxIntro = s("we-found-love:1").legato(1).slow(16).gain(0.9)
-const voxMain  = s("we-found-love:2").legato(1).slow(16).gain(0.9)
-const voxHook  = s("we-found-love:0").legato(1).slow(9).gain(0.9)
-const transition = s("effects:0").legato(1).slow(6).gain(0.9)
+const voxIntro = s("voxIntro").legato(1).slow(16).gain(0.9)
+const voxMain  = s("voxMain").legato(1).slow(16).gain(0.9)
+const voxHook  = s("voxHook").legato(1).slow(9).gain(0.9)
+const transition = s("transition").legato(1).slow(6).gain(0.9)
 
 // == ARRANGEMENT (153 bars) ==
 
@@ -138,4 +152,4 @@ const transitionArr = arrange(
 )
 
 // === SONG ===
-stack(drumsArr, bassArr, vocalsArr, pianoArr, ebassArr, stringsArr, transitionArr)
+stack(preloadHack, drumsArr, bassArr, vocalsArr, pianoArr, ebassArr, stringsArr, transitionArr)
